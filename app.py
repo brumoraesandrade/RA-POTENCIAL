@@ -8,7 +8,6 @@ st.title("🎯 Radar de Conversão: Bancos e Adquirentes")
 st.write("Mapeamento de fragilidades de concorrentes via Reclame Aqui para geração de leads.")
 
 # --- Simulação de Coleta de Dados (Scraping) ---
-# Na prática, você substituiria esta função por uma chamada à API do Apify ou script de Selenium
 def coletar_reclamacoes(concorrente):
     reclamacoes_mock = [
         {"Titulo": "Taxa abusiva na antecipação", "Reclamacao": "Prometeram 1% e estão cobrando 3%. Absurdo!", "Data": "01/07/2026"},
@@ -16,14 +15,14 @@ def coletar_reclamacoes(concorrente):
         {"Titulo": "Dinheiro bloqueado", "Reclamacao": "Fiz vendas e o dinheiro não caiu na conta.", "Data": "29/06/2026"},
         {"Titulo": "Atendimento péssimo", "Reclamacao": "Fico horas no telefone e ninguém resolve meu estorno.", "Data": "28/06/2026"}
     ]
-    return random.sample(reclamacoes_mock, 3) # Retorna 3 reclamações aleatórias para o teste
+    return random.sample(reclamacoes_mock, 3)
 
 # --- Simulação de Processamento (NLP) ---
 def analisar_oportunidade(texto):
     texto = texto.lower()
     if "taxa" in texto or "cobrança" in texto:
         return "Redução de Custos", "Oferecer taxa flat ou isenção de mensalidade."
-    elif "maquininha" in texto ou "caiu" in texto:
+    elif "maquininha" in texto or "caiu" in texto:
         return "Estabilidade de Hardware", "Destacar conexão Wi-Fi/4G redundante do nosso terminal."
     elif "dinheiro" in texto or "bloqueado" in texto:
         return "Fluxo de Caixa", "Vender antecipação automática em D+0."
@@ -52,6 +51,7 @@ if st.button("Mapear Oportunidades"):
             
             # 3. Exibe o resultado
             df = pd.DataFrame(resultados)
+            
             st.success("Análise concluída!")
             st.dataframe(df, use_container_width=True)
     else:
